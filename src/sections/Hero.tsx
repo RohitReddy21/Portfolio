@@ -47,7 +47,7 @@ const Hero: React.FC = () => {
             animate={{ scale: [1, 1.02, 1] }}
             transition={{ repeat: Infinity, duration: 5 }}
           >
-            <span className="gradient-text">Hello, I'm Rohit Reddy</span>
+            <span className="text-gray-100">Hello, I'm Rohit Reddy</span>
           </motion.h1>
           
           <motion.h2 

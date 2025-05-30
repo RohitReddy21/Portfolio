@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Code2, Lightbulb, Puzzle, Rocket } from 'lucide-react';
+import photo from '../components/assets/My Photo.jpeg';
 
 const About: React.FC = () => {
   const [ref, inView] = useInView({
@@ -43,7 +44,7 @@ const About: React.FC = () => {
           >
             <div className="aspect-[4/5] rounded-2xl overflow-hidden relative z-10">
               <img
-                src="https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+                src={photo}
                 alt="Rohit Reddy"
                 className="w-full h-full object-cover"
               />
