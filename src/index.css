@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #8A2BE2;
+  --primary-light: #9370DB;
+  --primary-dark: #4B0082;
+  --accent: #F0E6FF;
+  --text-primary: #2D3748;
+  --text-secondary: #718096;
+  --background: #FFFFFF;
+  --card-bg: rgba(255, 255, 255, 0.8);
+}
+
+.dark {
+  --primary: #9370DB;
+  --primary-light: #B19CD9;
+  --primary-dark: #6A5ACD;
+  --accent: #2D1B4B;
+  --text-primary: #F7FAFC;
+  --text-secondary: #CBD5E0;
+  --background: #1A202C;
+  --card-bg: rgba(45, 55, 72, 0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  @apply bg-white dark:bg-gray-900 text-gray-800 dark:text-white;
+  overflow-x: hidden;
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.container-padding {
+  @apply px-4 md:px-8;
+}
+
+.glass-card {
+  @apply backdrop-blur-md bg-opacity-30 dark:bg-opacity-30 border border-gray-200 dark:border-gray-700;
+}
+
+.custom-cursor {
+  @apply pointer-events-none fixed z-50 rounded-full mix-blend-difference;
+}
+
+.glow-effect {
+  box-shadow: 0 0 15px 2px var(--primary);
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-600 to-purple-400;
+}
+
+.animated-border::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid transparent;
+  @apply rounded-lg;
+  background: linear-gradient(45deg, var(--primary), var(--primary-light)) border-box;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  animation: border-animation 4s linear infinite;
+}
+
+@keyframes border-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.floating {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.spin-slow {
+  animation: spin 20s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-violet-500 dark:bg-violet-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-violet-600 dark:bg-violet-700;
+}
