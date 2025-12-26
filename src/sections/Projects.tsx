@@ -75,16 +75,7 @@ const Projects: React.FC = () => {
       githubLink: "https://github.com/RohitReddy21/farmstay",
       featured: true
     },
-    // {
-    //   id: 6,
-    //   title: "Recipe Finder Application",
-    //   description: "A recipe discovery application that helps users find recipes based on available ingredients, dietary preferences, and cuisine types. Features recipe search, ingredient-based filtering, step-by-step cooking instructions, and nutritional information.",
-    //   technologies: ["React", "JavaScript", "Food API", "CSS3", "HTML5"],
-    //   image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-    //   demoLink: "#",
-    //   githubLink: "#",
-    //   featured: false
-    // }
+    
   ];
 
   const filteredProjects = filter === 'all' 

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { MapPin, Mail, Phone, Send, CheckCircle, Github, Linkedin, Instagram, AlertCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [ref, inView] = useInView({
@@ -21,11 +20,8 @@ const Contact: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // EmailJS Configuration - Replace these with your EmailJS credentials
-  // Get these from https://www.emailjs.com/
-  const EMAILJS_SERVICE_ID = 'service_o4oyin1'; // Replace with your EmailJS Service ID
-  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS Template ID
-  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS Public Key
+  // Web3Forms API Key
+  const WEB3FORMS_ACCESS_KEY = '94898ef9-065e-4a18-bc56-be21f3040b33';
 
   // Social media links - Update these with your actual links
   const socialLinks = [
@@ -59,57 +55,50 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
     setError(null);
 
-    // Check if EmailJS is configured
-    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY || 
-        EMAILJS_SERVICE_ID.includes('YOUR_') || EMAILJS_TEMPLATE_ID.includes('YOUR_') || EMAILJS_PUBLIC_KEY.includes('YOUR_')) {
-      setError('Email service not configured. Please set up EmailJS credentials in Contact.tsx');
-      setIsSubmitting(false);
-      return;
-    }
-
     try {
-      // Initialize EmailJS
-      emailjs.init(EMAILJS_PUBLIC_KEY);
-
-      // Prepare template parameters
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
+      // Prepare form data for Web3Forms
+      const formPayload = {
+        access_key: WEB3FORMS_ACCESS_KEY,
+        name: formData.name,
+        email: formData.email,
         subject: formData.subject,
         message: formData.message,
-        to_email: 'rohitreddy956@gmail.com', // Your email address
+        from_name: 'Portfolio Contact Form',
       };
 
-      // Send email using EmailJS
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_TEMPLATE_ID,
-        templateParams
-      );
+      // Send form data to Web3Forms
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formPayload),
+      });
 
-      // Success
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      
-      // Reset success message after 5 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-      }, 5000);
+      const result = await response.json();
+
+      if (result.success) {
+        // Success
+        setIsSubmitting(false);
+        setIsSubmitted(true);
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        
+        // Reset success message after 5 seconds
+        setTimeout(() => {
+          setIsSubmitted(false);
+        }, 5000);
+      } else {
+        throw new Error(result.message || 'Failed to send message');
+      }
     } catch (err: any) {
-      console.error('EmailJS Error:', err);
+      console.error('Web3Forms Error:', err);
       
-      // Provide specific error messages
-      let errorMessage = 'Failed to send message. Please try again later.';
+      // Provide user-friendly error message
+      let errorMessage = 'Failed to send message. Please try again later or contact me directly at rohitreddy956@gmail.com';
       
-      if (err?.text?.includes('412') || err?.text?.includes('insufficient authentication')) {
-        errorMessage = 'Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard. See EMAILJS_SETUP.md for instructions.';
-      } else if (err?.text?.includes('Invalid template')) {
-        errorMessage = 'Email template error. Please check your Template ID in EmailJS.';
-      } else if (err?.text?.includes('Invalid service')) {
-        errorMessage = 'Email service error. Please check your Service ID in EmailJS.';
-      } else if (err?.text) {
-        errorMessage = `Error: ${err.text}. Please contact me directly at rohitreddy956@gmail.com`;
+      if (err?.message) {
+        errorMessage = err.message;
       }
       
       setError(errorMessage);
