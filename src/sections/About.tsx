@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Code2, Lightbulb, Puzzle, Rocket } from 'lucide-react';
+import { Lightbulb, Puzzle, Globe, Server } from 'lucide-react';
 import photo from '../components/assets/My Photo.jpeg';
 
 const About: React.FC = () => {
@@ -16,7 +16,7 @@ const About: React.FC = () => {
   };
 
   return (
-    <section id="about" ref={ref} className="py-24 bg-white dark:bg-gray-900">
+    <section id="about" ref={ref} className="py-24 bg-gray-900">
       <div className="container mx-auto px-4">
         <motion.div
           initial="hidden"
@@ -30,8 +30,8 @@ const About: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            I design and develop experiences that make people's lives simpler through Web and Mobile apps.
-            I work with React, JavaScript, and modern web technologies.
+            I design and develop full-stack applications and websites that make people's lives simpler.
+            I work with React, Python, FastAPI, and modern web technologies to build scalable solutions.
           </p>
         </motion.div>
 
@@ -45,7 +45,7 @@ const About: React.FC = () => {
             <div className="aspect-[4/5] rounded-2xl overflow-hidden relative z-10">
               <img
                 src={photo}
-                alt="Rohit Reddy"
+                alt="Rohit Reddy - Full Stack Software Developer specializing in React and Python"
                 className="w-full h-full object-cover"
               />
             </div>
@@ -61,25 +61,27 @@ const About: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
           >
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Web Developer & UI/UX Enthusiast
+              Full Stack Developer
             </h3>
             <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Hi! I'm Rohit Reddy, a passionate web developer with over 5 years of experience in 
-              creating beautiful, functional, and user-centered digital experiences. I am always 
-              striving to learn new technologies and keeping up with the latest design trends.
+              Hi! I'm Rohit Reddy, a passionate full-stack developer with 2+ years of experience in 
+              creating beautiful, functional, and user-centered digital experiences. I specialize in 
+              React for frontend development and Python with FastAPI for backend services, along with 
+              data science and machine learning applications.
             </p>
             <p className="text-gray-600 dark:text-gray-400 mb-8">
-              With a strong foundation in web development and a keen eye for design, I create 
-              websites that not only look great but also provide seamless user experience. 
-              My goal is to create products that are inclusive and accessible to all.
+              With a strong foundation in both frontend and backend development, I create 
+              full-stack applications and websites that not only look great but also provide 
+              seamless user experience and robust backend functionality. My goal is to create 
+              products that are inclusive, accessible, and scalable.
             </p>
 
             <div className="grid grid-cols-2 gap-6">
               {[
-                { icon: <Code2 className="h-8 w-8 text-primary" />, title: "Web Development", description: "Creating responsive websites" },
+                { icon: <Server className="h-8 w-8 text-primary" />, title: "Full Stack Applications", description: "End-to-end development" },
+                { icon: <Globe className="h-8 w-8 text-primary" />, title: "Websites", description: "Creating responsive websites" },
                 { icon: <Lightbulb className="h-8 w-8 text-primary" />, title: "Problem Solving", description: "Finding elegant solutions" },
                 { icon: <Puzzle className="h-8 w-8 text-primary" />, title: "UI/UX Design", description: "Designing intuitive interfaces" },
-                { icon: <Rocket className="h-8 w-8 text-primary" />, title: "Performance", description: "Optimizing for speed" },
               ].map((item, index) => (
                 <motion.div
                   key={index}

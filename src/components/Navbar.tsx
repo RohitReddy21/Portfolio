@@ -39,7 +39,7 @@ const Navbar: React.FC = () => {
       transition={{ duration: 0.5 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? 'bg-white/80 dark:bg-dark/80 backdrop-blur-md shadow-md'
+          ? 'bg-gray-900/80 backdrop-blur-md shadow-md'
           : 'bg-transparent'
       }`}
     >
@@ -119,7 +119,7 @@ const Navbar: React.FC = () => {
         animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
         transition={{ duration: 0.3 }}
       >
-        <div className="px-4 py-2 bg-white dark:bg-dark shadow-lg divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="px-4 py-2 bg-gray-900 shadow-lg divide-y divide-gray-700">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}

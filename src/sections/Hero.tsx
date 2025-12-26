@@ -56,7 +56,7 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            <span>Web Developer & UI/UX Enthusiast</span>
+            <span>Full Stack Software Developer</span>
           </motion.h2>
           
           <motion.div

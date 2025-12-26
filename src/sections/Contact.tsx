@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { MapPin, Mail, Phone, Send, CheckCircle } from 'lucide-react';
+import { MapPin, Mail, Phone, Send, CheckCircle, Github, Linkedin, Instagram, AlertCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 const Contact: React.FC = () => {
   const [ref, inView] = useInView({
@@ -18,18 +19,75 @@ const Contact: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  // EmailJS Configuration - Replace these with your EmailJS credentials
+  // Get these from https://www.emailjs.com/
+  const EMAILJS_SERVICE_ID = 'service_o4oyin1'; // Replace with your EmailJS Service ID
+  const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS Template ID
+  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS Public Key
+
+  // Social media links - Update these with your actual links
+  const socialLinks = [
+    {
+      name: 'Github',
+      icon: Github,
+      url: 'https://github.com/RohitReddy21', // Update with your GitHub URL
+      color: 'hover:text-gray-900 dark:hover:text-white'
+    },
+    {
+      name: 'LinkedIn',
+      icon: Linkedin,
+      url: 'https://www.linkedin.com/in/rohit-reddy-869776257/', // Update with your LinkedIn URL
+      color: 'hover:text-blue-600'
+    },
+    {
+      name: 'Instagram',
+      icon: Instagram,
+      url: '#', // Update with your Instagram URL
+      color: 'hover:text-pink-500'
+    }
+  ];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+    setError(null);
+
+    // Check if EmailJS is configured
+    if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY || 
+        EMAILJS_SERVICE_ID.includes('YOUR_') || EMAILJS_TEMPLATE_ID.includes('YOUR_') || EMAILJS_PUBLIC_KEY.includes('YOUR_')) {
+      setError('Email service not configured. Please set up EmailJS credentials in Contact.tsx');
+      setIsSubmitting(false);
+      return;
+    }
+
+    try {
+      // Initialize EmailJS
+      emailjs.init(EMAILJS_PUBLIC_KEY);
+
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'rohitreddy956@gmail.com', // Your email address
+      };
+
+      // Send email using EmailJS
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams
+      );
+
+      // Success
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
@@ -38,11 +96,29 @@ const Contact: React.FC = () => {
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 1500);
+    } catch (err: any) {
+      console.error('EmailJS Error:', err);
+      
+      // Provide specific error messages
+      let errorMessage = 'Failed to send message. Please try again later.';
+      
+      if (err?.text?.includes('412') || err?.text?.includes('insufficient authentication')) {
+        errorMessage = 'Gmail authentication error. Please reconnect your Gmail service in EmailJS dashboard. See EMAILJS_SETUP.md for instructions.';
+      } else if (err?.text?.includes('Invalid template')) {
+        errorMessage = 'Email template error. Please check your Template ID in EmailJS.';
+      } else if (err?.text?.includes('Invalid service')) {
+        errorMessage = 'Email service error. Please check your Service ID in EmailJS.';
+      } else if (err?.text) {
+        errorMessage = `Error: ${err.text}. Please contact me directly at rohitreddy956@gmail.com`;
+      }
+      
+      setError(errorMessage);
+      setIsSubmitting(false);
+    }
   };
 
   return (
-    <section id="contact" ref={ref} className="py-24 bg-gray-50 dark:bg-gray-800">
+    <section id="contact" ref={ref} className="py-24 bg-gray-800">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -65,10 +141,10 @@ const Contact: React.FC = () => {
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+            <h3 className="text-2xl font-bold mb-6 text-white">
               Contact Information
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
+            <p className="text-gray-400 mb-8">
               I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.
             </p>
 
@@ -83,8 +159,8 @@ const Contact: React.FC = () => {
                   <MapPin className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">Location</h4>
-                  <p className="text-gray-600 dark:text-gray-400">San Francisco, CA, United States</p>
+                  <h4 className="text-lg font-semibold text-white mb-1">Location</h4>
+                  <p className="text-gray-400">Uppal ,Hyderabad ,500039</p>
                 </div>
               </motion.div>
 
@@ -98,9 +174,9 @@ const Contact: React.FC = () => {
                   <Mail className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">Email</h4>
-                  <a href="mailto:contact@rohitreddy.com" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors">
-                    contact@rohitreddy.com
+                  <h4 className="text-lg font-semibold text-white mb-1">Email</h4>
+                  <a href="mailto:rohitreddy956@gmail.com" className="text-gray-400 hover:text-primary transition-colors">
+                    rohitreddy956@gmail.com
                   </a>
                 </div>
               </motion.div>
@@ -115,9 +191,9 @@ const Contact: React.FC = () => {
                   <Phone className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h4 className="text-lg font-semibold text-gray-800 dark:text-white mb-1">Phone</h4>
-                  <a href="tel:+14151234567" className="text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-primary-light transition-colors">
-                    +1 (415) 123-4567
+                  <h4 className="text-lg font-semibold text-white mb-1">Phone</h4>
+                  <a href="tel:+916300612812" className="text-gray-400 hover:text-primary transition-colors">
+                    +91 6300612812
                   </a>
                 </div>
               </motion.div>
@@ -129,21 +205,27 @@ const Contact: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.7 }}
               className="mt-12"
             >
-              <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+              <h4 className="text-xl font-semibold text-white mb-4">
                 Follow Me
               </h4>
               <div className="flex space-x-4">
-                {['Github', 'LinkedIn', 'Twitter', 'Dribbble'].map((platform, index) => (
-                  <motion.a
-                    key={index}
-                    href="#"
-                    className="p-3 bg-white dark:bg-gray-700 rounded-full shadow-md hover:shadow-lg transition-shadow"
-                    whileHover={{ y: -5 }}
-                    whileTap={{ scale: 0.9 }}
-                  >
-                    <span className="text-gray-800 dark:text-gray-200">{platform}</span>
-                  </motion.a>
-                ))}
+                {socialLinks.map((social, index) => {
+                  const Icon = social.icon;
+                  return (
+                    <motion.a
+                      key={index}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`p-3 bg-gray-700 rounded-full shadow-md hover:shadow-lg transition-all text-gray-400 ${social.color}`}
+                      whileHover={{ y: -5, scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                      title={social.name}
+                    >
+                      <Icon className="h-5 w-5" />
+                    </motion.a>
+                  );
+                })}
               </div>
             </motion.div>
           </motion.div>
@@ -152,9 +234,9 @@ const Contact: React.FC = () => {
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8"
+            className="bg-gray-900 rounded-xl shadow-lg p-8"
           >
-            <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+            <h3 className="text-2xl font-bold mb-6 text-white">
               Send Me a Message
             </h3>
 
@@ -165,18 +247,36 @@ const Contact: React.FC = () => {
                 className="flex flex-col items-center justify-center py-12 text-center"
               >
                 <CheckCircle className="h-16 w-16 text-green-500 mb-4" />
-                <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-2">
+                <h4 className="text-xl font-bold text-white mb-2">
                   Message Sent Successfully!
                 </h4>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-400">
                   Thank you for reaching out. I'll get back to you as soon as possible.
                 </p>
+              </motion.div>
+            ) : error ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="flex flex-col items-center justify-center py-12 text-center"
+              >
+                <AlertCircle className="h-16 w-16 text-red-500 mb-4" />
+                <h4 className="text-xl font-bold text-white mb-2">
+                  Error Sending Message
+                </h4>
+                <p className="text-gray-400 mb-4">{error}</p>
+                <button
+                  onClick={() => setError(null)}
+                  className="px-4 py-2 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors"
+                >
+                  Try Again
+                </button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
                       Your Name
                     </label>
                     <input
@@ -186,11 +286,11 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
                       Your Email
                     </label>
                     <input
@@ -200,13 +300,13 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                      className="w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-1">
                     Subject
                   </label>
                   <input
@@ -216,12 +316,12 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-1">
                     Your Message
                   </label>
                   <textarea
@@ -231,7 +331,7 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-700 focus:ring-2 focus:ring-primary focus:border-transparent bg-gray-800 text-white"
                   ></textarea>
                 </div>
 

@@ -28,63 +28,63 @@ const Projects: React.FC = () => {
     {
       id: 1,
       title: "3D Portfolio Website",
-      description: "A portfolio website with 3D elements and animations using Three.js and React.",
-      technologies: ["React", "Three.js", "Tailwind CSS"],
-      image: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
-      githubLink: "#",
+      description: "An interactive portfolio website featuring immersive 3D animations and visual effects built with React and Three.js. Showcases projects with smooth transitions, responsive design, and modern UI/UX principles. Includes dark mode, smooth scrolling, and animated components.",
+      technologies: ["React", "TypeScript", "Three.js", "Framer Motion", "Tailwind CSS", "Vite"],
+      image: "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      demoLink: "https://portfolio-three-roan-efs5t5o7jf.vercel.app/",
+      githubLink: "https://github.com/RohitReddy21/Portfolio",
       featured: true
     },
     {
       id: 2,
-      title: "E-commerce Platform",
-      description: "A fully responsive e-commerce platform with product catalog, cart and checkout.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      image: "https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
-      githubLink: "#",
+      title: "PrimeVerse - Digital Marketing Website",
+      description: "A modern digital marketing agency website showcasing services, portfolio, and client testimonials. Features responsive design, service pages, case studies, contact forms, and blog section. Built with modern web technologies for optimal performance and SEO.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vercel", "SEO"],
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      demoLink: "https://prime-verse.vercel.app/",
+      githubLink: "https://github.com/RohitReddy21/PrimeVerse-",
       featured: true
     },
     {
       id: 3,
-      title: "Weather Application",
-      description: "A weather application that shows forecasts using a third-party API.",
-      technologies: ["JavaScript", "HTML", "CSS", "OpenWeather API"],
-      image: "https://images.pexels.com/photos/1118873/pexels-photo-1118873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
+      title: "TJ - AI Company Website",
+      description: "A professional company website for an AI-oriented technology company. Features modern design showcasing AI services, solutions, team, and technology stack. Includes interactive elements, service descriptions, case studies, and contact integration for business inquiries.",
+      technologies: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "AI Integration", "Vercel"],
+      image: "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      demoLink: "https://tj-beta.vercel.app/",
       githubLink: "#",
       featured: false
     },
     {
       id: 4,
-      title: "Task Management App",
-      description: "A productivity app for managing tasks, projects, and deadlines.",
-      technologies: ["React", "Firebase", "Tailwind CSS"],
-      image: "https://images.pexels.com/photos/6956822/pexels-photo-6956822.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
-      githubLink: "#",
+      title: "CRM PV - Customer Management System",
+      description: "A comprehensive Customer Relationship Management (CRM) application for managing customer data, interactions, sales pipelines, and business relationships. Features contact management, activity tracking, lead management, and analytics dashboard.",
+      technologies: ["React", "Node.js", "MongoDB", "Express", "Tailwind CSS", "REST API"],
+      image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      demoLink: "https://crmpv.vercel.app/",
+      githubLink: "https://github.com/RohitReddy21/CRMPV",
       featured: true
     },
     {
       id: 5,
-      title: "Social Media Dashboard",
-      description: "A dashboard for social media analytics and account management.",
-      technologies: ["React", "Chart.js", "TypeScript"],
-      image: "https://images.pexels.com/photos/7151481/pexels-photo-7151481.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
-      githubLink: "#",
-      featured: false
+      title: "FarmStay - Booking Platform",
+      description: "A full-stack booking platform for farm stays and rural accommodations. Features property listings, search and filter functionality, booking system, user authentication, payment processing, and admin panel for property management.",
+      technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Chart.js", "Tailwind CSS"],
+      image: "https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      demoLink: "https://farmstay-eight.vercel.app/",
+      githubLink: "https://github.com/RohitReddy21/farmstay",
+      featured: true
     },
-    {
-      id: 6,
-      title: "Recipe Finder",
-      description: "An app to find recipes based on available ingredients in your kitchen.",
-      technologies: ["React", "JavaScript", "CSS", "Food API"],
-      image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      demoLink: "#",
-      githubLink: "#",
-      featured: false
-    }
+    // {
+    //   id: 6,
+    //   title: "Recipe Finder Application",
+    //   description: "A recipe discovery application that helps users find recipes based on available ingredients, dietary preferences, and cuisine types. Features recipe search, ingredient-based filtering, step-by-step cooking instructions, and nutritional information.",
+    //   technologies: ["React", "JavaScript", "Food API", "CSS3", "HTML5"],
+    //   image: "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    //   demoLink: "#",
+    //   githubLink: "#",
+    //   featured: false
+    // }
   ];
 
   const filteredProjects = filter === 'all' 
@@ -94,7 +94,7 @@ const Projects: React.FC = () => {
       : projects;
 
   return (
-    <section id="projects" ref={ref} className="py-24 bg-white dark:bg-gray-900">
+    <section id="projects" ref={ref} className="py-24 bg-gray-900">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -107,7 +107,7 @@ const Projects: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            Here are some of my recent projects. Each project is a unique piece of development.
+            Here are some of my recent full-stack projects built with React, Python, and modern web technologies. Each project demonstrates different aspects of web development, from frontend UI/UX to backend APIs and database management.
           </p>
         </motion.div>
 
@@ -148,14 +148,18 @@ const Projects: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden group"
+              className="bg-gray-800 rounded-xl shadow-lg overflow-hidden group"
               whileHover={{ y: -10 }}
             >
-              <div className="relative aspect-video overflow-hidden">
+              <div className="relative aspect-video overflow-hidden bg-gray-700">
                 <img 
                   src={project.image} 
-                  alt={project.title}
+                  alt={`${project.title} - Full Stack Project by Rohit Reddy`}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.src = 'https://images.pexels.com/photos/1068523/pexels-photo-1068523.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 w-full">
@@ -207,7 +211,7 @@ const Projects: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-20 bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-10"
+          className="mt-20 bg-gray-800 rounded-xl shadow-lg p-6 md:p-10"
         >
           <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
             Featured 3D Project
@@ -226,15 +230,16 @@ const Projects: React.FC = () => {
             </div>
             <div>
               <h4 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">
-                Interactive 3D Web Experience
+                Interactive 3D Portfolio Experience
               </h4>
               <p className="text-gray-600 dark:text-gray-400 mb-6">
-                This project showcases my abilities with Three.js and WebGL to create immersive
-                3D experiences on the web. Users can interact with the 3D model, rotate it, and
-                explore it from different angles.
+                This portfolio website showcases my abilities with Three.js and WebGL to create immersive
+                3D experiences on the web. Features interactive 3D models, smooth animations, and modern
+                design principles. Users can interact with 3D elements, rotate models, and explore
+                the portfolio through an engaging visual experience.
               </p>
               <div className="flex flex-wrap gap-2 mb-6">
-                {['Three.js', 'WebGL', 'React', 'GLSL', 'JavaScript'].map((tech, index) => (
+                {['Three.js', 'WebGL', 'React', 'Framer Motion', 'TypeScript', 'Tailwind CSS'].map((tech, index) => (
                   <span 
                     key={index}
                     className="text-xs px-2 py-1 rounded-full bg-primary/10 text-primary dark:text-primary-light"
@@ -245,7 +250,9 @@ const Projects: React.FC = () => {
               </div>
               <div className="flex space-x-4">
                 <motion.a
-                  href="#"
+                  href="https://portfolio-three-roan-efs5t5o7jf.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 py-3 bg-primary hover:bg-primary-dark text-white rounded-lg transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -253,7 +260,9 @@ const Projects: React.FC = () => {
                   View Project
                 </motion.a>
                 <motion.a
-                  href="#"
+                  href="https://github.com/RohitReddy21/Portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-6 py-3 border border-primary text-primary dark:text-primary-light hover:bg-primary/10 rounded-lg transition-colors"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}

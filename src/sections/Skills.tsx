@@ -18,18 +18,19 @@ const Skills: React.FC = () => {
     { name: 'Three.js', level: 70 },
   ];
 
-  // Design skills
-  const designSkills = [
-    { name: 'UI Design', level: 85 },
-    { name: 'UX Design', level: 80 },
-    { name: 'Figma', level: 75 },
-    { name: 'Adobe XD', level: 70 },
-    { name: 'Responsive Design', level: 90 },
-    { name: 'Design Systems', level: 85 },
+  // Python & Data Science skills
+  const pythonSkills = [
+    { name: 'Python', level: 85 },
+    { name: 'FastAPI', level: 80 },
+    { name: 'NumPy', level: 75 },
+    { name: 'Matplotlib', level: 75 },
+    { name: 'Seaborn', level: 70 },
+    { name: 'Pandas', level: 80 },
+    { name: 'ML Algorithms', level: 75 },
   ];
 
   return (
-    <section id="skills" ref={ref} className="py-24 bg-gray-50 dark:bg-gray-800">
+    <section id="skills" ref={ref} className="py-24 bg-gray-800">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -42,7 +43,7 @@ const Skills: React.FC = () => {
           </h2>
           <div className="w-24 h-1 bg-primary mx-auto mb-6"></div>
           <p className="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            I've worked with a variety of technologies and design tools to create amazing web experiences.
+            I'm a full-stack developer specializing in React for frontend development and Python for backend services, APIs, and data science applications.
           </p>
         </motion.div>
 
@@ -52,7 +53,7 @@ const Skills: React.FC = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8"
+            className="bg-gray-900 rounded-xl shadow-lg p-8"
           >
             <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
               Technical Skills
@@ -82,18 +83,18 @@ const Skills: React.FC = () => {
             </div>
           </motion.div>
 
-          {/* Design Skills */}
+          {/* Python & Data Science Skills */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-8"
+            className="bg-gray-900 rounded-xl shadow-lg p-8"
           >
             <h3 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-white">
-              Design Skills
+              Python & Data Science Skills
             </h3>
             <div className="space-y-6">
-              {designSkills.map((skill, index) => (
+              {pythonSkills.map((skill, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0 }}
@@ -123,7 +124,7 @@ const Skills: React.FC = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-16 p-8 bg-white dark:bg-gray-900 rounded-xl shadow-lg"
+          className="mt-16 p-8 bg-gray-900 rounded-xl shadow-lg"
         >
           <h3 className="text-2xl font-bold mb-8 text-center text-gray-800 dark:text-white">
             Technologies I Work With
@@ -131,14 +132,15 @@ const Skills: React.FC = () => {
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {[
               'React', 'JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Tailwind CSS',
-              'Three.js', 'Node.js', 'Git', 'Figma', 'Webpack', 'Redux'
+              'Node.js', 'Python', 'FastAPI', 'NumPy', 'Pandas', 'Matplotlib',
+              'Seaborn', 'Scikit-learn', 'Git','Vercel','Render', 'Three.js'
             ].map((tech, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
                 transition={{ duration: 0.4, delay: 0.7 + index * 0.05 }}
-                className="flex flex-col items-center justify-center p-4 bg-gray-50 dark:bg-gray-800 rounded-lg hover:shadow-md transition-shadow"
+                className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-lg hover:shadow-md transition-shadow"
                 whileHover={{ y: -5 }}
               >
                 <span className="text-gray-800 dark:text-gray-200 text-center font-medium">{tech}</span>
